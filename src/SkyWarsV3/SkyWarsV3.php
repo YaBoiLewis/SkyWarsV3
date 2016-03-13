@@ -26,7 +26,7 @@ use pocketmine\tile\Chest;
 use pocketmine\inventory\ChestInventory;
 use pocketmine\event\plugin\PluginEvent;
 class SurvivalGamesV3 extends PluginBase implements Listener {
-    public $prefix = TextFormat::GRAY . "[" . TextFormat::WHITE . TextFormat::BOLD . "S" . TextFormat::RED . "G" . TextFormat::RESET . TextFormat::GRAY . "] ";
+    public $prefix = TextFormat::GRAY . "[" . TextFormat::WHITE . TextFormat::BOLD . "Sky" . TextFormat::RED . "Wars" . TextFormat::RESET . TextFormat::GRAY . "] ";
 	public $mode = 0;
 	public $arenas = array();
 	public $currentLevel = "";
@@ -34,7 +34,7 @@ class SurvivalGamesV3 extends PluginBase implements Listener {
 	public function onEnable()
 	{
         $this->getServer()->getPluginManager()->registerEvents($this ,$this);
-		$this->getLogger()->info(TextFormat::GREEN . "SurvivalGames Loaded!");
+		$this->getLogger()->info(TextFormat::GREEN . "SkyWars Loaded!");
 		@mkdir($this->getDataFolder());
 		$config2 = new Config($this->getDataFolder() . "/rank.yml", Config::YAML);
 		$config2->save();
@@ -96,7 +96,7 @@ class SurvivalGamesV3 extends PluginBase implements Listener {
 	
 	public function onCommand(CommandSender $player, Command $cmd, $label, array $args) {
         switch($cmd->getName()){
-			case "sg":
+			case "sw":
 				if($player->isOp())
 				{
 					if(!empty($args[0]))
@@ -137,7 +137,7 @@ class SurvivalGamesV3 extends PluginBase implements Listener {
 					}
 				}
 			return true;
-			case "setrank":
+			case "":
 				if($player->isOp())
 				{
 				if(!empty($args[0]))
@@ -315,7 +315,7 @@ class SurvivalGamesV3 extends PluginBase implements Listener {
 	}
 }
 class RefreshSigns extends PluginTask {
-    public $prefix = TextFormat::GRAY . "[" . TextFormat::WHITE . TextFormat::BOLD . "S" . TextFormat::RED . "G" . TextFormat::RESET . TextFormat::GRAY . "] ";
+    public $prefix = TextFormat::GRAY . "[" . TextFormat::WHITE . TextFormat::BOLD . "Sky" . TextFormat::RED . "Wars" . TextFormat::RESET . TextFormat::GRAY . "] ";
 	public function __construct($plugin)
 	{
 		$this->plugin = $plugin;
@@ -351,7 +351,7 @@ class RefreshSigns extends PluginTask {
 	}
 }
 class GameSender extends PluginTask {
-    public $prefix = TextFormat::GRAY . "[" . TextFormat::WHITE . TextFormat::BOLD . "S" . TextFormat::RED . "G" . TextFormat::RESET . TextFormat::GRAY . "] ";
+    public $prefix = TextFormat::GRAY . "[" . TextFormat::WHITE . TextFormat::BOLD . "Sky" . TextFormat::RED . "Wars" . TextFormat::RESET . TextFormat::GRAY . "] ";
 	public function __construct($plugin)
 	{
 		$this->plugin = $plugin;
@@ -404,6 +404,9 @@ class GameSender extends PluginTask {
 										$pl->sendMessage($this->prefix . TextFormat::GREEN . "You won!");
 										$pl->getInventory()->clearAll();
 										$pl->removeAllEffects();
+										$p1->
+										$p1->getServer()->unloadLevel($levelArena);
+										$p1->getServer()->loadLevel($levelArena);
 										$pl->setNameTag($pl->getName());
 										$spawn = $this->plugin->getServer()->getDefaultLevel()->getSafeSpawn();
 										$this->plugin->getServer()->getDefaultLevel()->loadChunk($spawn->getX(), $spawn->getZ());
