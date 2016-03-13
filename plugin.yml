@@ -1,0 +1,14 @@
+name: SkyWarsV3
+main: SkyWarsV3\SkyWarsV3
+version: 3.0.2
+api: 
+- 1.0.0
+- 1.1.0
+- 2.0.0
+author: ImagicalGamer
+
+
+commands:
+    sw:
+        usage: /sw make SkyWars
+        description: SurvivalGames-Commands
